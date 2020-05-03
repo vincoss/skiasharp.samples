@@ -9,7 +9,7 @@ namespace SkiaSharpSamples.SkiaSharpHelpers
     {
         public SKBitmap Bitmap { get; private set; }
 
-        private Dictionary<long, TouchManipulationInfo> touchDictionary = new Dictionary<long, TouchManipulationInfo>();
+        private Dictionary<long, TouchManipulationInfo> _touchDictionary = new Dictionary<long, TouchManipulationInfo>();
 
         public TouchManipulationBitmap(SKBitmap bitmap)
         {
@@ -61,36 +61,37 @@ namespace SkiaSharpSamples.SkiaSharpHelpers
             switch (type)
             {
                 case TouchActionType.Pressed:
-                    touchDictionary.Add(id, new TouchManipulationInfo
+                    if (_touchDictionary.ContainsKey(id) == false)
                     {
-                        PreviousPoint = location,
-                        NewPoint = location
-                    });
+                        _touchDictionary.Add(id, new TouchManipulationInfo());
+                    }
+                    _touchDictionary[id].PreviousPoint = location;
+                    _touchDictionary[id].NewPoint = location;
                     break;
 
                 case TouchActionType.Moved:
-                    TouchManipulationInfo info = touchDictionary[id];
+                    TouchManipulationInfo info = _touchDictionary[id];
                     info.NewPoint = location;
                     Manipulate();
                     info.PreviousPoint = info.NewPoint;
                     break;
 
                 case TouchActionType.Released:
-                    touchDictionary[id].NewPoint = location;
+                    _touchDictionary[id].NewPoint = location;
                     Manipulate();
-                    touchDictionary.Remove(id);
+                    _touchDictionary.Remove(id);
                     break;
 
                 case TouchActionType.Cancelled:
-                    touchDictionary.Remove(id);
+                    _touchDictionary.Remove(id);
                     break;
             }
         }
 
         void Manipulate()
         {
-            TouchManipulationInfo[] infos = new TouchManipulationInfo[touchDictionary.Count];
-            touchDictionary.Values.CopyTo(infos, 0);
+            TouchManipulationInfo[] infos = new TouchManipulationInfo[_touchDictionary.Count];
+            _touchDictionary.Values.CopyTo(infos, 0);
             SKMatrix touchMatrix = SKMatrix.MakeIdentity();
 
             if (infos.Length == 1)

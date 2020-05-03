@@ -194,7 +194,12 @@ namespace SkiaSharpSamples.Views.Shared
                     break;
             }
 
-            e.Handled = true;
+            // NOTE: Handle only touch events if there is zoom already, Othervise pass touch event to higher controls.
+            if (_hasScale)
+            {
+                e.Handled = true;
+            }
+
             SkiaView.InputTransparent = false;
         }
 
