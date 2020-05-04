@@ -20,7 +20,7 @@ namespace SkiaSharpSamples.Views.Shared
         private long _numberOfTapsReceived;
 
         // Pinch & Pan
-        private TouchManipulationBitmap _bitmapManipulation;
+        private TouchManipulationBitmap _bitmapManipulation = new TouchManipulationBitmap(new SKBitmap());
         private List<long> touchIds = new List<long>();
         
         #region Properties
@@ -40,7 +40,7 @@ namespace SkiaSharpSamples.Views.Shared
 
             using (Stream stream = newStream)
             {
-                if (view._bitmapManipulation != null &&view._bitmapManipulation.Bitmap != null)
+                if (view._bitmapManipulation.Bitmap != null)
                 {
                     view._bitmapManipulation.Bitmap.Dispose();
                 }
