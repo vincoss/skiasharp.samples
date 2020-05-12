@@ -70,20 +70,28 @@ namespace SkiaSharpSamples.SkiaSharpHelpers
                     break;
 
                 case TouchActionType.Moved:
-                    TouchManipulationInfo info = _touchDictionary[id];
-                    info.NewPoint = location;
-                    Manipulate();
-                    info.PreviousPoint = info.NewPoint;
+                    if (_touchDictionary.ContainsKey(id))
+                    {
+                        TouchManipulationInfo info = _touchDictionary[id];
+                        info.NewPoint = location;
+                        Manipulate();
+                        info.PreviousPoint = info.NewPoint;
+                    }
                     break;
-
                 case TouchActionType.Released:
-                    _touchDictionary[id].NewPoint = location;
-                    Manipulate();
-                    _touchDictionary.Remove(id);
+                    if (_touchDictionary.ContainsKey(id))
+                    {
+                        _touchDictionary[id].NewPoint = location;
+                        Manipulate();
+                        _touchDictionary.Remove(id);
+                    }
                     break;
 
                 case TouchActionType.Cancelled:
-                    _touchDictionary.Remove(id);
+                    if (_touchDictionary.ContainsKey(id))
+                    {
+                        _touchDictionary.Remove(id);
+                    }
                     break;
             }
         }
