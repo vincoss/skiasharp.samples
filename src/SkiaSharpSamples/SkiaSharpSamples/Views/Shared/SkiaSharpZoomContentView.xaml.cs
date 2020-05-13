@@ -25,7 +25,7 @@ namespace SkiaSharpSamples.Views.Shared
         
         #region Properties
 
-        public static readonly BindableProperty ImageStreamProperty = BindableProperty.Create("ImageStream", typeof(Stream), typeof(SkiaSharpZoomContentView), null, propertyChanged: OnImageUrlChanged);
+        public static readonly BindableProperty ImageStreamProperty = BindableProperty.Create("ImageStream", typeof(Stream), typeof(SkiaSharpZoomContentView), null, propertyChanged: OnImageStreamChanged);
 
         public Stream ImageStream
         {
@@ -33,7 +33,7 @@ namespace SkiaSharpSamples.Views.Shared
             set { SetValue(ImageStreamProperty, value); }
         }
 
-        private static void OnImageUrlChanged(BindableObject bindable, object oldValue, object newValue)
+        private static void OnImageStreamChanged(BindableObject bindable, object oldValue, object newValue)
         {
             var newStream = (Stream)newValue;
             var view = (SkiaSharpZoomContentView)bindable;
