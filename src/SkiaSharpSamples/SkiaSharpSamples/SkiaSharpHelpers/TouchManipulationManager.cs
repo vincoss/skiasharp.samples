@@ -13,10 +13,10 @@ namespace SkiaSharpSamples.SkiaSharpHelpers
         {
             if (Mode == TouchManipulationMode.None)
             {
-                return SKMatrix.MakeIdentity();
+                return SKMatrix.CreateIdentity();
             }
 
-            SKMatrix touchMatrix = SKMatrix.MakeIdentity();
+            SKMatrix touchMatrix = SKMatrix.CreateIdentity();
             SKPoint delta = newPoint - prevPoint;
 
             if (Mode == TouchManipulationMode.ScaleDualRotate)  // One-finger rotation
@@ -52,7 +52,7 @@ namespace SkiaSharpSamples.SkiaSharpHelpers
 
         public SKMatrix TwoFingerManipulate(SKPoint prevPoint, SKPoint newPoint, SKPoint pivotPoint)
         {
-            SKMatrix touchMatrix = SKMatrix.MakeIdentity();
+            SKMatrix touchMatrix = SKMatrix.CreateIdentity();
             SKPoint oldVector = prevPoint - pivotPoint;
             SKPoint newVector = newPoint - pivotPoint;
 

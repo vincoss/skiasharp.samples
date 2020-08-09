@@ -14,7 +14,7 @@ namespace SkiaSharpSamples.SkiaSharpHelpers
         public TouchManipulationBitmap(SKBitmap bitmap)
         {
             this.Bitmap = bitmap;
-            Matrix = SKMatrix.MakeIdentity();
+            Matrix = SKMatrix.CreateIdentity();
 
             TouchManager = new TouchManipulationManager
             {
@@ -100,7 +100,7 @@ namespace SkiaSharpSamples.SkiaSharpHelpers
         {
             TouchManipulationInfo[] infos = new TouchManipulationInfo[_touchDictionary.Count];
             _touchDictionary.Values.CopyTo(infos, 0);
-            SKMatrix touchMatrix = SKMatrix.MakeIdentity();
+            SKMatrix touchMatrix = SKMatrix.CreateIdentity();
 
             if (infos.Length == 1)
             {

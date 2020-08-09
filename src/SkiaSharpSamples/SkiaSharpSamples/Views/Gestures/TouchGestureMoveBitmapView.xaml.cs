@@ -30,7 +30,7 @@ namespace SkiaSharpSamples.Views.Gestures
         {
             InitializeComponent();
 
-            _currentMatrix = SKMatrix.MakeIdentity();
+            _currentMatrix = SKMatrix.CreateIdentity();
             _display = new SKRect(0, 0, SkiaView.CanvasSize.Width, SkiaView.CanvasSize.Height);
         }
 
@@ -53,7 +53,7 @@ namespace SkiaSharpSamples.Views.Gestures
                     {
                         if (e.InContact && IsHitTest(point))
                         {
-                            SKMatrix matrix = SKMatrix.MakeIdentity();
+                            SKMatrix matrix = SKMatrix.CreateIdentity();
                             SKPoint delta = point - pressedLocation;
                             matrix = SKMatrix.MakeTranslation(delta.X, delta.Y);
 
