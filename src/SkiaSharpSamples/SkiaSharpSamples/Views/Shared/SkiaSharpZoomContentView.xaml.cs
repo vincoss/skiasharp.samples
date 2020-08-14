@@ -45,6 +45,10 @@ namespace SkiaSharpSamples.Views.Shared
                     view._bitmapManipulation.Bitmap.Dispose();
                 }
                 SKBitmap bitmap = newStream != null ? SKBitmap.Decode(stream) : new SKBitmap();
+                if (bitmap == null)
+                {
+                    bitmap = new SKBitmap(); // Might fail to decode.
+                }
                 view._bitmapManipulation = new TouchManipulationBitmap(bitmap);
                 view._bitmapManipulation.TouchManager.Mode = TouchManipulationMode.IsotropicScale;
                 view.SkiaView.InvalidateSurface();
