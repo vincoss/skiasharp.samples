@@ -46,8 +46,7 @@ namespace SkiaSharpSamples.SkiaSharpHelpers
 
             // Multiply the rotation matrix by a translation matrix
             var t = SKMatrix.CreateTranslation(delta.X, delta.Y);
-            SKMatrix.PostConcat(ref touchMatrix, t);
-
+            touchMatrix = touchMatrix.PostConcat(t);
             return touchMatrix;
         }
 
@@ -94,7 +93,7 @@ namespace SkiaSharpSamples.SkiaSharpHelpers
                 !float.IsNaN(scaleY) && !float.IsInfinity(scaleY))
             {
                 var scale = SKMatrix.CreateScale(scaleX, scaleY, pivotPoint.X, pivotPoint.Y);
-                SKMatrix.PostConcat(ref touchMatrix, scale);
+                touchMatrix =  touchMatrix.PostConcat(scale);
             }
 
             return touchMatrix;

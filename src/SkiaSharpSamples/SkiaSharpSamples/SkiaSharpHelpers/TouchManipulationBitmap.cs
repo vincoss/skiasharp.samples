@@ -121,7 +121,7 @@ namespace SkiaSharpSamples.SkiaSharpHelpers
             }
 
             SKMatrix matrix = Matrix;
-            SKMatrix.PostConcat(ref matrix, touchMatrix);
+            matrix = matrix.PostConcat(touchMatrix);
             Matrix = matrix;
         }
     }

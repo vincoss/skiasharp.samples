@@ -58,8 +58,8 @@ namespace SkiaSharpSamples.Views.Gestures
                             matrix = SKMatrix.CreateTranslation(delta.X, delta.Y);
 
                             // Concatenate the matrices
-                            SKMatrix.PreConcat(ref matrix, pressedMatrix);
-                            _currentMatrix = matrix;
+                            matrix = matrix.PostConcat(pressedMatrix);
+                             _currentMatrix = matrix;
 
                             SkiaView.InvalidateSurface();
                         }
