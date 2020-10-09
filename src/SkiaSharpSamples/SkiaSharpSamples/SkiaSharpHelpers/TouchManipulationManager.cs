@@ -32,7 +32,7 @@ namespace SkiaSharpSamples.SkiaSharpHelpers
 
                     // Calculate rotation matrix
                     float angle = newAngle - prevAngle;
-                    touchMatrix = SKMatrix.MakeRotation(angle, pivotPoint.X, pivotPoint.Y);
+                    touchMatrix = SKMatrix.CreateRotation(angle, pivotPoint.X, pivotPoint.Y);
 
                     // Effectively rotate the old vector
                     float magnitudeRatio = Magnitude(oldVector) / Magnitude(newVector);
@@ -45,7 +45,8 @@ namespace SkiaSharpSamples.SkiaSharpHelpers
             }
 
             // Multiply the rotation matrix by a translation matrix
-            SKMatrix.PostConcat(ref touchMatrix, SKMatrix.MakeTranslation(delta.X, delta.Y));
+            var t = SKMatrix.CreateTranslation(delta.X, delta.Y);
+            SKMatrix.PostConcat(ref touchMatrix, t);
 
             return touchMatrix;
         }
@@ -65,7 +66,7 @@ namespace SkiaSharpSamples.SkiaSharpHelpers
 
                 // Calculate rotation matrix
                 float angle = newAngle - oldAngle;
-                touchMatrix = SKMatrix.MakeRotation(angle, pivotPoint.X, pivotPoint.Y);
+                touchMatrix = SKMatrix.CreateRotation(angle, pivotPoint.X, pivotPoint.Y);
 
                 // Effectively rotate the old vector
                 float magnitudeRatio = Magnitude(oldVector) / Magnitude(newVector);
@@ -92,8 +93,8 @@ namespace SkiaSharpSamples.SkiaSharpHelpers
             if (!float.IsNaN(scaleX) && !float.IsInfinity(scaleX) &&
                 !float.IsNaN(scaleY) && !float.IsInfinity(scaleY))
             {
-                SKMatrix.PostConcat(ref touchMatrix,
-                    SKMatrix.MakeScale(scaleX, scaleY, pivotPoint.X, pivotPoint.Y));
+                var scale = SKMatrix.CreateScale(scaleX, scaleY, pivotPoint.X, pivotPoint.Y);
+                SKMatrix.PostConcat(ref touchMatrix, scale);
             }
 
             return touchMatrix;

@@ -46,7 +46,7 @@ namespace SkiaSharpSamples.Views
             var resizeFactor = 4F;
 
             // Draw a bitmap rescaled
-            canvas.SetMatrix(SKMatrix.MakeScale(resizeFactor, resizeFactor));
+            canvas.SetMatrix(SKMatrix.CreateScale(resizeFactor, resizeFactor));
             canvas.DrawBitmap(_bitmap, 0, 0);
             canvas.ResetMatrix();
         }

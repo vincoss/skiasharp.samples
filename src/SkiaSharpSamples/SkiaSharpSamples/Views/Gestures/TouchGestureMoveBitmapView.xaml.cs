@@ -55,7 +55,7 @@ namespace SkiaSharpSamples.Views.Gestures
                         {
                             SKMatrix matrix = SKMatrix.CreateIdentity();
                             SKPoint delta = point - pressedLocation;
-                            matrix = SKMatrix.MakeTranslation(delta.X, delta.Y);
+                            matrix = SKMatrix.CreateTranslation(delta.X, delta.Y);
 
                             // Concatenate the matrices
                             SKMatrix.PreConcat(ref matrix, pressedMatrix);
