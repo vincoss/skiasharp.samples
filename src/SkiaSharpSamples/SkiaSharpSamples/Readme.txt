@@ -2,12 +2,14 @@
 ## Tasks
 search for TODO
 add max zoom for the SkiaSharpZoomContentView
-test touch ID on multiple devices to see what is the single ID, windows is 1, androind is 0
+test touch ID on multiple devices to see what is the single ID, windows is 1, androind is 0, iOS is always different
+touch and zoom does not work on iOS
 sample with SKPaint 
 sample with high quality paint
 use SKGLView on zoom control
 progress indicator
-
+drawing samples
+crop sample
 
 ## Resources
 https://skia.org/

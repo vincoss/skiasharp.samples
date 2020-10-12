@@ -139,7 +139,14 @@ namespace SkiaSharpSamples.Views.Shared
             return new SKRect(_display.Left, _display.Top, _display.Right, _display.Bottom);
         }
 
-        // TODO: windows has id from 1, Android has 0, test and fix this
+        /// <summary>
+        /// TODO:
+        /// UWP     : 1
+        /// Android : 0
+        /// iOS     : any
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="id"></param>
         private void ProcessPressedValueForTapGesture(SkiaSharp.Views.Forms.SKTouchDeviceType type, long id)
         {
             if (type == SkiaSharp.Views.Forms.SKTouchDeviceType.Mouse)
